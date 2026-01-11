@@ -1,0 +1,6 @@
+name = "notion-proxy"
+main = "src/index.ts"
+compatibility_date = "2024-12-05"
+
+# Secrets는 wrangler secret put 명령으로 설정
+# NOTION_TOKEN, NOTION_DATABASE_ID, API_KEY

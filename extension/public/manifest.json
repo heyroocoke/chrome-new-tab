@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "New Tab Dashboard",
+  "version": "1.0.0",
+  "description": "Notion 연동 개인 대시보드",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": []
+}
