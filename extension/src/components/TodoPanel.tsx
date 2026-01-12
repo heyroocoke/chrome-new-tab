@@ -9,12 +9,13 @@ export function TodoPanel() {
   const totalCount = todos.length;
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+    <div className="glass-panel rounded-2xl p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-white">Today's Tasks</h2>
+        <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>Today's Tasks</h2>
         <button
           onClick={refresh}
-          className="p-2 text-slate-400 hover:text-white hover:bg-slate-700/50 rounded-lg transition-colors"
+          className="p-2 rounded-lg transition-colors hover:opacity-70"
+          style={{ color: 'var(--text-secondary)' }}
           title="Refresh"
         >
           <svg
@@ -35,29 +36,29 @@ export function TodoPanel() {
 
       {totalCount > 0 && (
         <div className="mb-4">
-          <div className="flex justify-between text-sm text-slate-400 mb-1">
+          <div className="flex justify-between text-sm mb-1" style={{ color: 'var(--text-secondary)' }}>
             <span>Progress</span>
             <span>
               {completedCount}/{totalCount}
             </span>
           </div>
-          <div className="h-2 bg-slate-700 rounded-full overflow-hidden">
+          <div className="h-2 rounded-full overflow-hidden" style={{ background: 'var(--input-bg)' }}>
             <div
-              className="h-full bg-emerald-500 transition-all duration-300"
-              style={{ width: `${(completedCount / totalCount) * 100}%` }}
+              className="h-full transition-all duration-300"
+              style={{ width: `${(completedCount / totalCount) * 100}%`, background: 'var(--accent)' }}
             />
           </div>
         </div>
       )}
 
       {error && (
-        <div className="mb-4 p-3 bg-red-500/20 border border-red-500/50 rounded-lg text-red-300 text-sm">
+        <div className="mb-4 p-3 rounded-lg text-sm" style={{ background: 'rgba(239, 68, 68, 0.2)', border: '1px solid rgba(239, 68, 68, 0.5)', color: 'var(--danger)' }}>
           {error}
         </div>
       )}
 
       {loading ? (
-        <div className="flex items-center justify-center py-8 text-slate-400">
+        <div className="flex items-center justify-center py-8" style={{ color: 'var(--text-secondary)' }}>
           <svg
             className="w-6 h-6 animate-spin"
             fill="none"
@@ -83,7 +84,7 @@ export function TodoPanel() {
         <>
           <div className="space-y-2 mb-4 max-h-[400px] overflow-y-auto">
             {todos.length === 0 ? (
-              <p className="text-center py-8 text-slate-500">
+              <p className="text-center py-8" style={{ color: 'var(--text-tertiary)' }}>
                 No tasks for today. Add one below!
               </p>
             ) : (

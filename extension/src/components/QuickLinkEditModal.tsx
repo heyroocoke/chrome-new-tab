@@ -60,41 +60,45 @@ export function QuickLinkEditModal({ isOpen, link, onSave, onClose }: QuickLinkE
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center"
+      style={{ background: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(8px)' }}
       onClick={onClose}
     >
       <div
-        className="bg-slate-800 rounded-2xl p-6 w-full max-w-md border border-slate-700/50 shadow-xl"
+        className="glass-panel rounded-2xl p-6 w-full max-w-md shadow-2xl"
         onClick={(e) => e.stopPropagation()}
       >
-        <h3 className="text-xl font-semibold text-white mb-4">
+        <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--text-primary)' }}>
           {link ? 'Edit Link' : 'Add Link'}
         </h3>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">Name</label>
+            <label className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>Name</label>
             <input
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Google"
-              className="w-full px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              className="w-full px-4 py-2 rounded-lg glass-input"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-1">URL</label>
+            <label className="block text-sm font-medium mb-1" style={{ color: 'var(--text-secondary)' }}>URL</label>
             <div className="flex gap-2">
               <input
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
                 placeholder="https://example.com"
-                className="flex-1 px-4 py-2 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                className="flex-1 px-4 py-2 rounded-lg glass-input"
               />
               {faviconPreview && (
-                <div className="flex items-center justify-center w-10 h-10 bg-slate-700 rounded-lg">
+                <div
+                  className="flex items-center justify-center w-10 h-10 rounded-lg"
+                  style={{ background: 'var(--input-bg)' }}
+                >
                   <img
                     src={faviconPreview}
                     alt="favicon"
@@ -109,7 +113,7 @@ export function QuickLinkEditModal({ isOpen, link, onSave, onClose }: QuickLinkE
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Color</label>
+            <label className="block text-sm font-medium mb-2" style={{ color: 'var(--text-secondary)' }}>Color</label>
             <div className="grid grid-cols-4 gap-2">
               {COLOR_OPTIONS.map((option) => (
                 <button
@@ -117,7 +121,7 @@ export function QuickLinkEditModal({ isOpen, link, onSave, onClose }: QuickLinkE
                   type="button"
                   onClick={() => setColor(option.value)}
                   className={`h-10 rounded-lg bg-gradient-to-br ${option.value} transition-all
-                    ${color === option.value ? 'ring-2 ring-white ring-offset-2 ring-offset-slate-800' : 'hover:scale-105'}`}
+                    ${color === option.value ? 'ring-2 ring-white shadow-lg' : 'hover:scale-105'}`}
                 />
               ))}
             </div>
@@ -127,14 +131,16 @@ export function QuickLinkEditModal({ isOpen, link, onSave, onClose }: QuickLinkE
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 bg-slate-700 text-slate-300 rounded-lg hover:bg-slate-600 transition-colors"
+              className="flex-1 px-4 py-2 rounded-lg transition-colors"
+              style={{ background: 'var(--input-bg)', color: 'var(--text-secondary)' }}
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={!name.trim() || !isValidUrl(url)}
-              className="flex-1 px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 px-4 py-2 text-white rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              style={{ background: 'var(--accent)' }}
             >
               {link ? 'Save' : 'Add'}
             </button>

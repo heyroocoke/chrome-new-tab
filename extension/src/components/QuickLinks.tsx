@@ -67,12 +67,12 @@ export function QuickLinks() {
 
   if (loading) {
     return (
-      <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+      <div className="glass-panel rounded-2xl p-6">
         <div className="animate-pulse">
-          <div className="h-6 bg-slate-700 rounded w-32 mb-4"></div>
+          <div className="h-6 rounded w-32 mb-4" style={{ background: 'var(--input-bg)' }}></div>
           <div className="grid grid-cols-2 gap-3">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="h-16 bg-slate-700 rounded-xl"></div>
+              <div key={i} className="h-16 rounded-xl" style={{ background: 'var(--input-bg)' }}></div>
             ))}
           </div>
         </div>
@@ -81,12 +81,13 @@ export function QuickLinks() {
   }
 
   return (
-    <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50">
+    <div className="glass-panel rounded-2xl p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-xl font-semibold text-white">Quick Links</h2>
+        <h2 className="text-xl font-semibold" style={{ color: 'var(--text-primary)' }}>Quick Links</h2>
         <button
           onClick={handleAdd}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-slate-700 hover:bg-slate-600 text-slate-300 hover:text-white transition-colors"
+          className="w-8 h-8 flex items-center justify-center rounded-lg transition-colors hover:opacity-70"
+          style={{ background: 'var(--input-bg)', color: 'var(--text-secondary)' }}
           title="Add link"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -161,7 +162,7 @@ export function QuickLinks() {
       </div>
 
       {links.length === 0 && (
-        <div className="text-center py-8 text-slate-400">
+        <div className="text-center py-8" style={{ color: 'var(--text-tertiary)' }}>
           <p>No links yet. Click + to add one.</p>
         </div>
       )}
